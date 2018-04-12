@@ -1,0 +1,14 @@
+dependencies:
+    pre:
+        # Install the latest stable PlatformIO
+        - sudo pip install -U platformio
+        # preinstall esp8266 platform libs
+        - platformio platform install espressif8266
+
+compile:
+  override:
+    - pio run -e nodemcuv2
+          
+deployment:
+  override:
+    - pio remote -a "remote-1" run -t upload
