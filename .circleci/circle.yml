@@ -15,11 +15,15 @@ jobs:
     flash:
       steps:
         - pio remote -a "remote-1" run -t upload
-
 workflows:
   version: 2
   build_and_test:
     jobs:
       - pre
-      - build
-      - test
+      - build:
+          requires:
+            - pre
+      - test:
+          requires:
+            - pre
+            - build
