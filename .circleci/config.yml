@@ -13,6 +13,6 @@ jobs:
               platformio platform install espressif8266
         - run:
             name: run native tests
-            command: pio run -e native
+            command: pio test -e native
 
 #- pio remote -a "remote-1" run -t upload
