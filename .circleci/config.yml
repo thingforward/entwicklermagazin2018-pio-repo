@@ -1,30 +1,29 @@
 --- 
 version: 2
 jobs:
-    pre:
-      steps:
-        # Install the latest stable PlatformIO
-        - run: sudo pip install -U platformio
-        # preinstall esp8266 platform libs
-        - run: platformio platform install espressif8266
     build:
+      image: debian:9
       steps:
+        - run: sudo pip install -U platformio
+        - run: platformio platform install espressif8266
         - run: pio run -e native
     test:
+      image: debian:9
       steps:
+        - run: sudo pip install -U platformio
+        - run: platformio platform install espressif8266
         - run: pio test -e native 
     flash:
+      image: debian:9
       steps:
+        - run: sudo pip install -U platformio
+        - run: platformio platform install espressif8266
         - pio remote -a "remote-1" run -t upload
 workflows:
   version: 2
   build_and_test:
     jobs:
-      - pre
       - build:
-          requires:
-            - pre
       - test:
           requires:
-            - pre
             - build
