@@ -12,7 +12,7 @@ jobs:
               sudo pip install -U platformio
               platformio platform install espressif8266
         - run:
-            name: run native tests
-            command: pio test -e native
+            name: run 
+            command: pio run -e nodemcuv2
 
 #- pio remote -a "remote-1" run -t upload
